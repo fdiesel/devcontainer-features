@@ -33,13 +33,11 @@
     "vscode": {
       "extensions": ["James-Yu.latex-workshop"],
       "settings": {
-        // setup
         "files.associations": {
           "*.tex": "latex",
           "*.cls": "latex",
           "*.sty": "latex"
         },
-        // building
         "latex-workshop.latex.autoBuild.run": "onFileChange",
         "latex-workshop.latex.search.rootFiles.include": [
           "${env:LATEX_SRC_DIR}/**/*.tex"
@@ -71,10 +69,8 @@
             "tools": ["latexmk"]
           }
         ],
-        // viewing
         "latex-workshop.view.pdf.viewer": "tab",
         "latex-workshop.latex.outDir": "${env:LATEX_OUT_DIR}",
-        // formatting
         "[latex]": {
           "editor.formatOnSave": true,
           "editor.defaultFormatter": "James-Yu.latex-workshop"
