@@ -22,4 +22,4 @@ Forwards SSH Agent from host to container.
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/fdiesel/devcontainer-features/blob/main/src/ssh-agent/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/fdiesel/devcontainer-features/blob/main/src/ssh-agent-forwarding/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
