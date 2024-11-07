@@ -4,6 +4,6 @@ TMPDIR=/tmp/latex-workshop-pdftex
 mkdir -p $TMPDIR
 
 # Set the environment variables for the container
-echo LATEX_SRC_DIR="/workspaces/$SRCDIR" >> $TMPDIR/env
-echo LATEX_OUT_DIR="/workspaces/$OUTDIR" >> $TMPDIR/env
-echo TEXINPUTS="/workspaces/$TEXINPUTSDIR//:" >> $TMPDIR/env
+echo SRC_DIR="$SRCDIR" >> $TMPDIR/env
+echo OUT_DIR="$OUTDIR" >> $TMPDIR/env
+echo TEX_INPUTS_DIR="$TEXINPUTSDIR//:" >> $TMPDIR/env
