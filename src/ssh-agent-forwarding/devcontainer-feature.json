@@ -1,30 +1,29 @@
 {
   "id": "ssh-agent-forwarding",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "name": "SSH Agent Forwarding",
-  "description": "Forwards SSH Agent from host to container.",
+  "description": "Forwards SSH Agent from host to container. By utilizing the hosts SSH_AUTH_SOCK environment variable.",
   "options": {
-    "hostSshAuthSocket": {
-      "type": "string",
-      "description": "Path to the SSH Auth Socket on the host.",
-      "default": "/run/host-services/ssh-auth.sock",
-      "proposals": ["localEnv:SSH_AUTH_SOCK"]
-    },
+    // "hostSshAuthSocket": {
+    //   "type": "string",
+    //   "description": "Path to the SSH Auth Socket on the host.",
+    //   "default": "/run/host-services/ssh-auth.sock",
+    //   "proposals": ["localEnv:SSH_AUTH_SOCK"]
+    // },
     "containerSshAuthSocket": {
       "type": "string",
       "description": "Path to the SSH Auth Socket in the container.",
       "default": "/ssh-agent"
     }
   },
-  "postCreateCommand": "echo ${localEnv:SSH_AUTH_SOCK}"
-  // "mounts": [
-  //   {
-  //     "source": "${hostSshAuthSocket}",
-  //     "target": "${containerSshAuthSocket}",
-  //     "type": "bind"
-  //   }
-  // ],
-  // "containerEnv": {
-  //   "SSH_AUTH_SOCK": "${containerSshAuthSocket}"
-  // }
+  "mounts": [
+    {
+      "source": "${localEnv:SSH_AUTH_SOCK}",
+      "target": "${containerSshAuthSocket}",
+      "type": "bind"
+    }
+  ],
+  "containerEnv": {
+    "SSH_AUTH_SOCK": "${containerSshAuthSocket}"
+  }
 }
