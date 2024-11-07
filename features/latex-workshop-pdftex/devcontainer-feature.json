@@ -15,11 +15,18 @@
       "description": "The directory to store the output files. Relative to the container workspace folder.",
       "default": "build",
       "proposals": ["build", "aux"]
+    },
+    "texInputs": {
+      "type": "string",
+      "description": "The TEXINPUT directory for storing custom definitions like classes. Relative to the container workspace folder.",
+      "default": "def",
+      "proposals": ["def", "src/def"]
     }
   },
   "containerEnv": {
     "LATEX_SRC_DIR": "${containerWorkspaceFolder}/${srcDir}",
-    "LATEX_OUT_DIR": "${containerWorkspaceFolder}/${outDir}"
+    "LATEX_OUT_DIR": "${containerWorkspaceFolder}/${outDir}",
+    "TEXINPUTS": "${containerWorkspaceFolder}/${texInputs}//:"
   },
   "postCreateCommand": "mkdir -p ${env:LATEX_SRC_DIR} ${env:LATEX_OUT_DIR} && chmod -R 777 ${env:LATEX_SRC_DIR} ${env:LATEX_OUT_DIR}",
   "customizations": {
