@@ -1,5 +1,5 @@
 
-# SSH Agent Forwarding (ssh-agent)
+# SSH Agent Forwarding (ssh-agent-forwarding)
 
 Forwards SSH Agent from host to container.
 
@@ -7,7 +7,7 @@ Forwards SSH Agent from host to container.
 
 ```json
 "features": {
-    "ghcr.io/fdiesel/devcontainer-features/ssh-agent:0": {}
+    "ghcr.io/fdiesel/devcontainer-features/ssh-agent-forwarding:0": {}
 }
 ```
 
