@@ -1,6 +1,6 @@
 {
   "id": "latex-workshop-pdftex",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "LaTeX Workshop extension with pdftex",
   "description": "Latex Workshop extension configured to build with latexmk using pdftex.",
   "options": {
@@ -28,7 +28,7 @@
     "LATEX_OUT_DIR": "${containerWorkspaceFolder}/${outDir}",
     "TEXINPUTS": "${containerWorkspaceFolder}/${texInputs}//:"
   },
-  "postCreateCommand": "mkdir -p ${LATEX_SRC_DIR} ${LATEX_OUT_DIR} && chmod -R 777 ${LATEX_SRC_DIR} ${LATEX_OUT_DIR}",
+  "postCreateCommand": "mkdir -p ${containerWorkspaceFolder}/${srcDir} ${containerWorkspaceFolder}/${outDir} && chmod -R 777 ${containerWorkspaceFolder}/${srcDir} ${containerWorkspaceFolder}/${outDir}",
   "customizations": {
     "vscode": {
       "extensions": ["James-Yu.latex-workshop"],
