@@ -15,4 +15,3 @@ mkdir -p "$LATEX_SRC_DIR" "$LATEX_OUT_DIR"
 chmod -R 777 "$LATEX_SRC_DIR" "$LATEX_OUT_DIR"
 
 mkdir -p "/workspaces/test/${srcDir}"
-exit 1
