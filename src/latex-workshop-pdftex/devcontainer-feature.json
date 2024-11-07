@@ -1,6 +1,6 @@
 {
   "id": "latex-workshop-pdftex",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "name": "LaTeX Workshop extension with pdftex",
   "description": "Latex Workshop extension configured to build with latexmk using pdftex.",
   "options": {
@@ -23,7 +23,7 @@
       "proposals": ["def", "src/def"]
     }
   },
-  "postCreateCommand": "bash /tmp/latex-workshop-pdftex/post.sh ${localWorkspaceFolder} ${srcDir}",
+  "postCreateCommand": "bash /tmp/latex-workshop-pdftex/post.sh ${localWorkspaceFolder} ${srcDir} ${outDir} ${texInputs}",
   "customizations": {
     "vscode": {
       "extensions": ["James-Yu.latex-workshop"],
@@ -35,7 +35,7 @@
         },
         "latex-workshop.latex.autoBuild.run": "onFileChange",
         "latex-workshop.latex.search.rootFiles.include": [
-          "${env:LATEX_SRC_DIR}/**/*.tex"
+          "${LATEX_SRC_DIR}/**/*.tex"
         ],
         "latex-workshop.latex.recipe.default": "latexmk",
         "latex-workshop.latex.tools": [
@@ -48,14 +48,14 @@
               "-interaction=nonstopmode",
               "-file-line-error",
               "-shell-escape",
-              "-output-directory=${env:LATEX_OUT_DIR}",
+              "-output-directory=${LATEX_OUT_DIR}",
               "%DOC%"
             ]
           },
           {
             "name": "bibtex",
             "command": "bibtex",
-            "args": ["${env:LATEX_OUT_DIR}/%DOCFILE%"]
+            "args": ["${LATEX_OUT_DIR}/%DOCFILE%"]
           }
         ],
         "latex-workshop.latex.recipes": [
@@ -65,7 +65,7 @@
           }
         ],
         "latex-workshop.view.pdf.viewer": "tab",
-        "latex-workshop.latex.outDir": "${env:LATEX_OUT_DIR}",
+        "latex-workshop.latex.outDir": "${LATEX_OUT_DIR}",
         "[latex]": {
           "editor.formatOnSave": true,
           "editor.defaultFormatter": "James-Yu.latex-workshop"

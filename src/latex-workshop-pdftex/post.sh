@@ -1,15 +1,21 @@
 #!/bin/bash
 
-
+# Get the arguments
 WORKSPACE_DIR=$1
 SRC_DIR=$2
-TMPDIR=/tmp/latex-workshop-pdftex
+OUT_DIR=$3
+TEXINPUTS_DIR=$4
 
-# Set the environment variables for the container
-source $TMPDIR/env
-echo "LATEX_SRC_DIR=$WORKSPACE_DIR/$SRC_DIR" >> ~/.bashrc
-echo "SRC_DIR=$SRC_DIR" >> ~/.bashrc
+# Set the environment variables for the process
+LATEX_SRC_DIR=$WORKSPACE_DIR/$SRC_DIR
+LATEX_OUT_DIR=$WORKSPACE_DIR/$OUT_DIR
+TEXINPUTS=$WORKSPACE_DIR/$TEXINPUTS_DIR
 
-# # Create the necessary directories
-# mkdir -p "/tmp/$LATEX_SRC_DIR" "/tmp/$LATEX_OUT_DIR"
-# chmod -R 777 "/tmp/$LATEX_SRC_DIR" "/tmp/$LATEX_OUT_DIR"
+# Set the environment variables for the user
+echo "LATEX_SRC_DIR=$LATEX_SRC_DIR" >> ~/.bashrc
+echo "LATEX_OUT_DIR=$LATEX_OUT_DIR" >> ~/.bashrc
+echo "TEXINPUTS=$TEXINPUTS" >> ~/.bashrc
+
+# Create the necessary directories
+mkdir -p "$LATEX_SRC_DIR" "$LATEX_OUT_DIR"
+chmod -R 777 "$LATEX_SRC_DIR" "$LATEX_OUT_DIR"
