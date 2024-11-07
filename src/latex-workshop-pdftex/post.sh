@@ -1,10 +1,10 @@
 #!/bin/bash
 
+TMPDIR=/tmp/latex-workshop-pdftex
+
 # Get the arguments
 WORKSPACE_DIR=$1
-SRC_DIR=$2
-OUT_DIR=$3
-TEXINPUTS_DIR=$4
+source $TMPDIR/env
 
 # Set the environment variables for the process
 LATEX_SRC_DIR=$WORKSPACE_DIR/$SRC_DIR
