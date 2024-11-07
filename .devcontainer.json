@@ -2,7 +2,7 @@
   "name": "DevContainer Features",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm",
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
   ],
   "customizations": {
     "vscode": {
@@ -17,5 +17,6 @@
       }
     }
   },
-  "updateContentCommand": "npm install -g @devcontainers/cli"
+  "updateContentCommand": "npm install -g @devcontainers/cli",
+  "remoteUser": "node"
 }
