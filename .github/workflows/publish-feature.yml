@@ -15,6 +15,7 @@ on:
       path:
         description: "Path to the feature directory"
         required: true
+        default: "features/"
 
 env:
   REGISTRY: ghcr.io
