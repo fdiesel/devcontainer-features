@@ -2,8 +2,15 @@
   "name": "DevContainer Features",
   "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:1-20-bookworm",
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+    {
+      "source": "${localEnv:SSH_AUTH_SOCK}",
+      "target": "/ssh-agent",
+      "type": "bind"
+    }
   ],
+  "remoteEnv": {
+    "SSH_AUTH_SOCK": "/ssh-agent"
+  },
   "customizations": {
     "vscode": {
       "extensions": ["esbenp.prettier-vscode", "github.vscode-github-actions"],

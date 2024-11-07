@@ -1,0 +1,28 @@
+{
+  "id": "ssh-agent",
+  "version": "0.1.0",
+  "name": "SSH Agent Forwarding",
+  "description": "Forwards SSH Agent from host to container.",
+  "options": {
+    "hostSshAuthSocket": {
+      "type": "string",
+      "description": "Path to the SSH Auth Socket on the host.",
+      "default": "${localEnv:SSH_AUTH_SOCK}"
+    },
+    "containerSshAuthSocket": {
+      "type": "string",
+      "description": "Path to the SSH Auth Socket in the container.",
+      "default": "/ssh-agent"
+    }
+  },
+  "mounts": [
+    {
+      "source": "${options.hostSshAuthSocket}",
+      "target": "${options.containerSshAuthSocket}",
+      "type": "bind"
+    }
+  ],
+  "containerEnv": {
+    "SSH_AUTH_SOCK": "${options.containerSshAuthSocket}"
+  }
+}
