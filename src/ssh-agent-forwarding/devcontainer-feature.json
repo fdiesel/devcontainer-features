@@ -8,7 +8,7 @@
       "type": "string",
       "description": "Path to the SSH Auth Socket on the host.",
       "default": "/run/host-services/ssh-auth.sock",
-      "proposals": ["${localEnv:SSH_AUTH_SOCK}"]
+      "proposals": ["localEnv:SSH_AUTH_SOCK"]
     },
     "containerSshAuthSocket": {
       "type": "string",
