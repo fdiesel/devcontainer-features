@@ -1,6 +1,6 @@
 {
   "id": "latex-workshop-pdftex",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "name": "LaTeX Workshop extension with pdftex",
   "description": "Latex Workshop extension configured to build with latexmk using pdftex.",
   "options": {
@@ -35,7 +35,7 @@
         },
         "latex-workshop.latex.autoBuild.run": "onFileChange",
         "latex-workshop.latex.search.rootFiles.include": [
-          "${LATEX_SRC_DIR}/**/*.tex"
+          "${env:LATEX_SRC_DIR}/**/*.tex"
         ],
         "latex-workshop.latex.recipe.default": "latexmk",
         "latex-workshop.latex.tools": [
@@ -48,14 +48,14 @@
               "-interaction=nonstopmode",
               "-file-line-error",
               "-shell-escape",
-              "-output-directory=${LATEX_OUT_DIR}",
+              "-output-directory=${env:LATEX_OUT_DIR}",
               "%DOC%"
             ]
           },
           {
             "name": "bibtex",
             "command": "bibtex",
-            "args": ["${LATEX_OUT_DIR}/%DOCFILE%"]
+            "args": ["${env:LATEX_OUT_DIR}/%DOCFILE%"]
           }
         ],
         "latex-workshop.latex.recipes": [
@@ -65,7 +65,7 @@
           }
         ],
         "latex-workshop.view.pdf.viewer": "tab",
-        "latex-workshop.latex.outDir": "${LATEX_OUT_DIR}",
+        "latex-workshop.latex.outDir": "${env:LATEX_OUT_DIR}",
         "[latex]": {
           "editor.formatOnSave": true,
           "editor.defaultFormatter": "James-Yu.latex-workshop"
