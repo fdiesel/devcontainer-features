@@ -1,10 +1,8 @@
 #!/bin/bash
 
-# Set the environment variables for the container
-export LATEX_SRC_DIR="/workspaces/$SRCDIR"
-export LATEX_OUT_DIR="/workspaces/$OUTDIR"
-export TEXINPUTS="/workspaces/$TEXINPUTSDIR//:"
+TMPDIR=/tmp/latex-workshop-pdftex
 
-# Create the necessary directories
-mkdir -p "$LATEX_SRC_DIR" "$LATEX_OUT_DIR"
-chmod -R 777 "$LATEX_SRC_DIR" "$LATEX_OUT_DIR"
+# Set the environment variables for the container
+echo LATEX_SRC_DIR="/workspaces/$SRCDIR" >> $TMPDIR/env
+echo LATEX_OUT_DIR="/workspaces/$OUTDIR" >> $TMPDIR/env
+echo TEXINPUTS="/workspaces/$TEXINPUTSDIR//:" >> $TMPDIR/env
