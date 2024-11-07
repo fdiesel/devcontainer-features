@@ -3,17 +3,16 @@
   "version": "1.0.0",
   "name": "LaTeX Workshop extension with pdftex",
   "description": "Latex Workshop extension configured to build with latexmk using pdftex.",
-
   "options": {
     "srcDir": {
       "type": "string",
-      "description": "The directory containing the LaTeX source files.",
+      "description": "The directory containing the LaTeX source files. Relative to the container workspace folder.",
       "default": "src",
       "proposals": ["src", "."]
     },
     "outDir": {
       "type": "string",
-      "description": "The directory to store the output files.",
+      "description": "The directory to store the output files. Relative to the container workspace folder.",
       "default": "build",
       "proposals": ["build", "aux"]
     }
@@ -22,6 +21,7 @@
     "LATEX_SRC_DIR": "${containerWorkspaceFolder}/${srcDir}",
     "LATEX_OUT_DIR": "${containerWorkspaceFolder}/${outDir}"
   },
+  "postCreateCommand": "mkdir -p ${env:LATEX_SRC_DIR} ${env:LATEX_OUT_DIR} && chmod -R 777 ${env:LATEX_SRC_DIR} ${env:LATEX_OUT_DIR}",
   "customizations": {
     "vscode": {
       "extensions": ["James-Yu.latex-workshop"],
