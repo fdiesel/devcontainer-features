@@ -1,5 +1,5 @@
 {
-  "id": "ssh-agent",
+  "id": "ssh-agent-forwarding",
   "version": "0.1.0",
   "name": "SSH Agent Forwarding",
   "description": "Forwards SSH Agent from host to container.",
