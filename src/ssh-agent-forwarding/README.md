@@ -1,7 +1,7 @@
 
 # SSH Agent Forwarding (ssh-agent-forwarding)
 
-Forwards SSH Agent from host to container.
+Forwards SSH Agent from host to container. By utilizing the hosts SSH_AUTH_SOCK environment variable.
 
 ## Example Usage
 
@@ -15,7 +15,6 @@ Forwards SSH Agent from host to container.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| hostSshAuthSocket | Path to the SSH Auth Socket on the host. | string | /run/host-services/ssh-auth.sock |
 | containerSshAuthSocket | Path to the SSH Auth Socket in the container. | string | /ssh-agent |
 
 
