@@ -55,12 +55,11 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build and Push
-        uses: docker/build-push-action@v6
-        with:
-          context: ./${{ inputs.path }}
-          platforms: linux/amd64,linux/arm64
-          tags: |
-            ${{ env.IMAGE_LABEL }}/${{ inputs.path }}:${{ inputs.major }}.${{ inputs.minor }}.${{ inputs.patch }}
-            ${{ env.IMAGE_LABEL }}/${{ inputs.path }}:${{ inputs.major }}
-            ${{ env.IMAGE_LABEL }}/${{ inputs.path }}:latest
-          push: true
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            --tag ${{ env.IMAGE_LABEL }}/${{ inputs.path }}:${{ inputs.major }}.${{ inputs.minor }}.${{ inputs.patch }} \
+            --tag ${{ env.IMAGE_LABEL }}/${{ inputs.path }}:${{ inputs.major }} \
+            --tag ${{ env.IMAGE_LABEL }}/${{ inputs.path }}:latest \
+            --push \
+            ./${{ inputs.path }}
