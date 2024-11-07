@@ -1,6 +1,6 @@
 {
   "id": "latex-workshop-pdftex",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "name": "LaTeX Workshop extension with pdftex",
   "description": "Latex Workshop extension configured to build with latexmk using pdftex.",
   "options": {
@@ -23,7 +23,6 @@
       "proposals": ["def", "src/def"]
     }
   },
-  "postCreateCommand": "bash post.sh",
   "customizations": {
     "vscode": {
       "extensions": ["James-Yu.latex-workshop"],
