@@ -1,65 +1,46 @@
-name: Publish Feature
-
+name: "Release Features & Docs"
 on:
-  workflow_dispatch:
-    inputs:
-      major:
-        description: "Major version number"
-        required: true
-      minor:
-        description: "Minor version number"
-        required: true
-      patch:
-        description: "Patch version number"
-        required: true
-      path:
-        description: "Path to the feature directory"
-        required: true
-        default: "features/"
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_LABEL: ghcr.io/${{ github.repository }}
+  push:
+    branches: [main]
 
 jobs:
-  publish:
+  deploy:
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
-
+      pull-requests: write
+      packages: write
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Docker login
-        uses: docker/login-action@v3
+      - name: Publish Features
+        uses: devcontainers/action@v1
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          publish-features: "true"
+          base-path-to-features: "./src"
+          generate-docs: "true"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update Version in devcontainer-feature.json
+      - name: Create Documentation
+        id: push_image_info
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          VERSION="${{ inputs.major }}.${{ inputs.minor }}.${{ inputs.patch }}"
-          # Update the version field in the devcontainer-feature.json file
-          jq --arg v "$VERSION" '.version = $v' "${{ inputs.path }}/devcontainer-feature.json" > temp.json && mv temp.json "${{ inputs.path }}/devcontainer-feature.json"
-
-      - name: Commit Version Update
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: "Update version to ${{ inputs.major }}.${{ inputs.minor }}.${{ inputs.patch }}"
-        if: success()
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build and Push
-        run: |
-          docker buildx build \
-            --platform linux/amd64,linux/arm64 \
-            --tag ${{ env.IMAGE_LABEL }}/${{ inputs.path }}:${{ inputs.major }}.${{ inputs.minor }}.${{ inputs.patch }} \
-            --tag ${{ env.IMAGE_LABEL }}/${{ inputs.path }}:${{ inputs.major }} \
-            --tag ${{ env.IMAGE_LABEL }}/${{ inputs.path }}:latest \
-            --push \
-            ./${{ inputs.path }}
+          set -e
+          echo "Start."
+          # Configure git and Push updates
+          git config --global user.email github-actions[bot]@users.noreply.github.com
+          git config --global user.name github-actions[bot]
+          git config pull.rebase false
+          message='Automated documentation update'
+          # Add / update and commit
+          git add */**/README.md
+          git commit -m 'Automated documentation update [skip ci]' || export NO_UPDATES=true
+          # Push
+          if [ "$NO_UPDATES" != "true" ] ; then
+              git push origin main
+          fi
