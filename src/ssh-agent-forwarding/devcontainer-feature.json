@@ -1,6 +1,6 @@
 {
   "id": "ssh-agent-forwarding",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "SSH Agent Forwarding",
   "description": "Forwards SSH Agent from host to container.",
   "options": {
@@ -16,14 +16,15 @@
       "default": "/ssh-agent"
     }
   },
-  "mounts": [
-    {
-      "source": "${hostSshAuthSocket}",
-      "target": "${containerSshAuthSocket}",
-      "type": "bind"
-    }
-  ],
-  "containerEnv": {
-    "SSH_AUTH_SOCK": "${containerSshAuthSocket}"
-  }
+  "postCreateCommand": "echo ${hostSshAuthSocket}"
+  // "mounts": [
+  //   {
+  //     "source": "${hostSshAuthSocket}",
+  //     "target": "${containerSshAuthSocket}",
+  //     "type": "bind"
+  //   }
+  // ],
+  // "containerEnv": {
+  //   "SSH_AUTH_SOCK": "${containerSshAuthSocket}"
+  // }
 }
