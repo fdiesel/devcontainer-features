@@ -17,12 +17,12 @@
   },
   "mounts": [
     {
-      "source": "${options.hostSshAuthSocket}",
-      "target": "${options.containerSshAuthSocket}",
+      "source": "${hostSshAuthSocket}",
+      "target": "${containerSshAuthSocket}",
       "type": "bind"
     }
   ],
   "containerEnv": {
-    "SSH_AUTH_SOCK": "${options.containerSshAuthSocket}"
+    "SSH_AUTH_SOCK": "${containerSshAuthSocket}"
   }
 }
