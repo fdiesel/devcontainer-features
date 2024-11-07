@@ -1,6 +1,6 @@
 {
   "id": "latex-workshop-pdftex",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "name": "LaTeX Workshop extension with pdftex",
   "description": "Latex Workshop extension configured to build with latexmk using pdftex.",
   "options": {

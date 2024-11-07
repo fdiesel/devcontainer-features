@@ -14,5 +14,5 @@ export TEXINPUTS="/workspaces/$TEXINPUTS_DIR//:"
 mkdir -p "$LATEX_SRC_DIR" "$LATEX_OUT_DIR"
 chmod -R 777 "$LATEX_SRC_DIR" "$LATEX_OUT_DIR"
 
-echo ${srcDir}
+mkdir -p "/workspaces/test/${srcDir}"
 exit 1
