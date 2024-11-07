@@ -1,6 +1,6 @@
 {
   "id": "latex-workshop-pdftex",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "name": "LaTeX Workshop extension with pdftex",
   "description": "Latex Workshop extension configured to build with latexmk using pdftex.",
   "options": {
@@ -8,19 +8,28 @@
       "type": "string",
       "description": "The directory containing the LaTeX source files. Relative to the container workspace folder.",
       "default": "src",
-      "proposals": ["src", "."]
+      "proposals": [
+        "src",
+        "."
+      ]
     },
     "outDir": {
       "type": "string",
       "description": "The directory to store the output files. Relative to the container workspace folder.",
       "default": "build",
-      "proposals": ["build", "aux"]
+      "proposals": [
+        "build",
+        "aux"
+      ]
     },
     "texInputs": {
       "type": "string",
       "description": "The TEXINPUT directory for storing custom definitions like classes. Relative to the container workspace folder.",
       "default": "def",
-      "proposals": ["def", "src/def"]
+      "proposals": [
+        "def",
+        "src/def"
+      ]
     }
   },
   "containerEnv": {
@@ -31,7 +40,9 @@
   "postCreateCommand": "mkdir -p ${env:LATEX_SRC_DIR} ${env:LATEX_OUT_DIR} && chmod -R 777 ${env:LATEX_SRC_DIR} ${env:LATEX_OUT_DIR}",
   "customizations": {
     "vscode": {
-      "extensions": ["James-Yu.latex-workshop"],
+      "extensions": [
+        "James-Yu.latex-workshop"
+      ],
       "settings": {
         "files.associations": {
           "*.tex": "latex",
@@ -60,13 +71,17 @@
           {
             "name": "bibtex",
             "command": "bibtex",
-            "args": ["${env:LATEX_OUT_DIR}/%DOCFILE%"]
+            "args": [
+              "${env:LATEX_OUT_DIR}/%DOCFILE%"
+            ]
           }
         ],
         "latex-workshop.latex.recipes": [
           {
             "name": "latexmk",
-            "tools": ["latexmk"]
+            "tools": [
+              "latexmk"
+            ]
           }
         ],
         "latex-workshop.view.pdf.viewer": "tab",
@@ -76,7 +91,11 @@
           "editor.defaultFormatter": "James-Yu.latex-workshop"
         },
         "latex-workshop.formatting.latexindent.path": "latexindent",
-        "latex-workshop.formatting.latexindent.args": ["-m", "-g", "/dev/null"]
+        "latex-workshop.formatting.latexindent.args": [
+          "-m",
+          "-g",
+          "/dev/null"
+        ]
       }
     }
   }
