@@ -45,11 +45,14 @@ jobs:
           # Update the version field in the devcontainer-feature.json file
           jq --arg v "$VERSION" '.version = $v' "${{ inputs.path }}/devcontainer-feature.json" > temp.json && mv temp.json "${{ inputs.path }}/devcontainer-feature.json"
 
-      - name: Commit
+      - name: Commit Version Update
         uses: EndBug/add-and-commit@v9
         with:
           message: "Update version to ${{ inputs.major }}.${{ inputs.minor }}.${{ inputs.patch }}"
         if: success()
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Build and Push
         uses: docker/build-push-action@v6
