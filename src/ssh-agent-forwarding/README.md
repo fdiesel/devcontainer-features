@@ -15,7 +15,7 @@ Forwards SSH Agent from host to container.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| hostSshAuthSocket | Path to the SSH Auth Socket on the host. | string | ${localEnv:SSH_AUTH_SOCK} |
+| hostSshAuthSocket | Path to the SSH Auth Socket on the host. | string | /run/host-services/ssh-auth.sock |
 | containerSshAuthSocket | Path to the SSH Auth Socket in the container. | string | /ssh-agent |
 
 
